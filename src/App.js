@@ -7,6 +7,7 @@ import Cart from './Cart';
 import { CartProvider } from './CartContext';
 import Footer from './Footer';
 import About from './About'; // Import the About component
+import Home from './Home';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <div className="App">
           <Navbar />
           <Routes>
-            <Route exact path="/" element={<ProductList />} />
+            <Route exact path="/" element={<Home/> } />
+            <Route path="/store" element={<ProductList/>}/>
             <Route path="/about" element={<About />} /> {/* Ensure that the About component is rendered here */}
             <Route path="/cart" element={<Cart />} />
           </Routes>
