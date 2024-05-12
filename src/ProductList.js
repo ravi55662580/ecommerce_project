@@ -1,3 +1,4 @@
+// ProductList.js
 import React from 'react';
 import ProductItem from './ProductItem';
 
@@ -26,9 +27,9 @@ const productsArr = [
 
 const ProductList = () => {
   return (
-    <div className="container mt-5">
-      <h2>Music</h2>
-      <div className="row">
+    <div>
+      <h2>Products</h2>
+      <div>
         {productsArr.map((product, index) => (
           <ProductItem key={index} product={product} />
         ))}

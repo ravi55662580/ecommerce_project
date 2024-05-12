@@ -1,29 +1,31 @@
+// Cart.js
 import React from 'react';
+import { useCart } from './CartContext';
 
-const Cart = ({ cartElements, removeItem }) => {
+const Cart = () => {
+  const { cartItems, removeFromCart } = useCart();
+
   // Calculate total price
-  const totalPrice = cartElements.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
+  const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
-    <div className="cart">
-      <h2>Shopping Cart</h2>
-      <ul className="cart-items">
-        {cartElements.map((cartItem, index) => (
-          <li key={index} className="cart-item">
-            <div className="cart-item-info">
-              <img src={cartItem.imageUrl} alt={cartItem.title} className="cart-item-img" />
-              <div className="cart-item-details">
-                <div><strong>{cartItem.title}</strong></div>
-                <div>Price: ${cartItem.price}</div>
-                <div>Quantity: {cartItem.quantity}</div>
-              </div>
+    <div>
+      <h2>Cart</h2>
+      <ul>
+        {cartItems.map((item, index) => (
+          <li key={index}>
+            <img src={item.imageUrl} alt={item.title} />
+            <div>
+              <h3>{item.title}</h3>
+              <p>Price: ${item.price}</p>
+              <p>Quantity: {item.quantity}</p>
             </div>
-            <button className="cart-remove" onClick={() => removeItem(index)}>Remove</button>
+            <button onClick={() => removeFromCart(index)}>Remove</button>
           </li>
         ))}
       </ul>
-      <div className="cart-total">
-        <strong>Total: ${totalPrice}</strong>
+      <div>
+        <strong>Total Price: ${totalPrice}</strong>
       </div>
     </div>
   );

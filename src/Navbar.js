@@ -1,36 +1,32 @@
-import React from 'react';
+// Navbar.js
+import React, { useState } from 'react';
+import { useCart } from './CartContext';
+import Cart from './Cart'; // Import the Cart component
 
-const Navbar = ({ onCartClick }) => {
+const Navbar = () => {
+  const { cartItems } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container">
-        <a className="navbar-brand" href="#">The Generics</a>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Store</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
-          </ul>
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <button className="btn btn-outline-primary" onClick={onCartClick}>
-                <i className="fas fa-shopping-cart mr-1"></i>
-                Cart
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <>
+      <nav className="navbar">
+        <div className="brand">The Generics</div>
+        <ul className="nav-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Store</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#" onClick={toggleCart}>
+            <i className="fas fa-shopping-cart"></i>
+            Cart <span className="badge">{cartItems.length}</span>
+          </a></li>
+        </ul>
+      </nav>
+      {isCartOpen && <Cart />}
+    </>
   );
 }
 
