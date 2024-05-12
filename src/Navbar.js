@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({ onCartClick }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -22,7 +22,7 @@ const Navbar = () => {
           </ul>
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <button className="btn btn-outline-primary">
+              <button className="btn btn-outline-primary" onClick={onCartClick}>
                 <i className="fas fa-shopping-cart mr-1"></i>
                 Cart
               </button>
